@@ -1,8 +1,13 @@
+"use client";
+
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/app/Common/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Footer from "@/app/Common/Footer";
+import Terminals from "@/app/terminal/Terminals";
+import {TerminalContextProvider} from "react-terminal";
+import React, {useState} from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,17 +19,14 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = {
-  title: "Stripe",
-  description: "Stripe.dev application",
-};
-
 export default function RootLayout({ children }) {
+  const [isTerminalOpen, setIsTerminalOpen] = useState(false);
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Header />
+        <Header toggleTerminal={() => setIsTerminalOpen((prev) => !prev)}/>
         <div style={{ minHeight: "85vh" }}>
+          {isTerminalOpen &&<TerminalContextProvider><Terminals/></TerminalContextProvider>}
           {children}
         </div>
         <Footer />
