@@ -1,6 +1,6 @@
 import React from 'react';
 import {Card, CardBody, CardText, Col, Row} from "reactstrap";
-import {data} from "./data";
+import {data} from "../Common/data";
 import Link from "next/link";
 import Image from "next/image";
 
