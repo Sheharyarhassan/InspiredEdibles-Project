@@ -26,7 +26,7 @@ function Header({ toggleTerminal }) {
                      <Link href="/terminal" className="nav-link btn bg-secondary-subtle me-3 py-1 text-uppercase">[Y] Instagram</Link>
                   </li>
                   <li className="nav-item">
-                     <Link href="/terminal" className="nav-link btn bg-secondary-subtle me-3 py-1 text-uppercase">[B] Boomer mode</Link>
+                     <Link href="/boomermode" className="nav-link btn bg-secondary-subtle me-3 py-1 text-uppercase">[B] Boomer mode</Link>
                   </li>
                </ul>
                <a className="navbar-brand" href="#">
