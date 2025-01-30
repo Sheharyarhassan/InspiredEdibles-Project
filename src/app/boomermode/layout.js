@@ -38,8 +38,8 @@ export default function BoomerModeLayout({ children }) {
         <Row className="px-4 mt-5">
           {cardData.map((value, index) => {
             return (
-              <Col md={4}>
-                <div key={index}>
+              <Col md={4} key={index}>
+                <div >
                   <Image
                     src={value.backgroundColor}
                     alt=""
@@ -50,8 +50,9 @@ export default function BoomerModeLayout({ children }) {
             );
           })}
         </Row>
+        {children}
       </Container>
-      {/* {children} */}
+      
     </>
   );
 }

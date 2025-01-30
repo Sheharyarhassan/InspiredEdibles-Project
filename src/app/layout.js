@@ -30,7 +30,7 @@ export default function RootLayout({ children }) {
           {isTerminalOpen &&<TerminalContextProvider><Terminals/></TerminalContextProvider>}
           {children}
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );
