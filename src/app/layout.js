@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Footer from "@/app/Common/Footer";
 import Terminals from "@/app/terminal/Terminals";
 import {TerminalContextProvider} from "react-terminal";
-import React, {useState} from "react";
+import React, {useState,useEffect} from "react";
 import 'boxicons/css/boxicons.min.css';
 
 const geistSans = Geist({
@@ -22,12 +22,16 @@ const geistMono = Geist_Mono({
 
 export default function RootLayout({ children }) {
   const [isTerminalOpen, setIsTerminalOpen] = useState(false);
+  const [isClient, setIsClient] = useState(false)
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Header toggleTerminal={() => setIsTerminalOpen((prev) => !prev)}/>
         <div style={{ minHeight: "85vh" }}>
-          {isTerminalOpen &&<TerminalContextProvider><Terminals/></TerminalContextProvider>}
+          {(isTerminalOpen && isClient) &&<TerminalContextProvider><Terminals/></TerminalContextProvider>}
           {children}
         </div>
         <Footer />
