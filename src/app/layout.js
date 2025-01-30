@@ -8,6 +8,7 @@ import Footer from "@/app/Common/Footer";
 import Terminals from "@/app/terminal/Terminals";
 import {TerminalContextProvider} from "react-terminal";
 import React, {useState} from "react";
+import 'boxicons/css/boxicons.min.css';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
