@@ -16,7 +16,7 @@ function Page() {
                         <Col sm={6} md={4} key={index} className="d-flex flex-direction-column align-items-stretch">
                            <Card className="position-relative">
                               <CardBody className="w-100 position-absolute top-0 left-0">
-                                 <CardText className="p-3">
+                                 <div className="p-3">
                                     <div className="d-flex justify-content-between">
                                        <div className="d-flex">
                                           {item.categories.map((category, index) => {
@@ -30,11 +30,11 @@ function Page() {
                                        </div>
 
                                     </div>
-                                 </CardText>
+                                 </div>
                               </CardBody>
                               <Image className="mw-100 h-100" src={item.image} alt="..." />
                               <CardBody className="w-100 position-absolute bottom-0 left-0">
-                                 <CardText className="bg-light p-3">
+                                 <div className="bg-light p-3">
                                     <h5 className="fw-bold text-uppercase border-bottom border-1 border-dark">
                                        {item.title}
                                     </h5>
@@ -43,7 +43,7 @@ function Page() {
                                        <Link className="btn btn-outline-dark py-0" href={item.link + "/" + item.id}>Finish Reading</Link>
                                     </div>
 
-                                 </CardText>
+                                 </div>
                               </CardBody>
                            </Card>
                         </Col>
@@ -54,7 +54,7 @@ function Page() {
                         <Col sm={6} md={4} key={index} className="d-flex flex-direction-column align-items-stretch">
                            <Card className="position-relative">
                               <CardBody className="w-100 position-absolute top-0 left-0">
-                                 <CardText className="p-3">
+                                 <div className="p-3">
                                     <div className="d-flex justify-content-between">
                                        <div className="d-flex">
                                           {item.categories.map((category, index) => {
@@ -69,10 +69,10 @@ function Page() {
                                        </div>
                                        }
                                     </div>
-                                 </CardText>
+                                 </div>
                               </CardBody>
                               <Image className="mw-100 h-100" src={item.image} alt="..." />
-                              <CardBody className="w-100 position-absolute bottom-0 left-0">
+                              <div className="w-100 position-absolute bottom-0 left-0">
                                  <div className="d-flex justify-content-between">
                                     <div className="d-flex align-items-center">
                                        <Image src={reaction} alt="Reaction" className="mw-100 h-auto"/>
@@ -92,7 +92,7 @@ function Page() {
                                        <Link href={item.link + "/" + item.id} key={index} className="py-0 px-1 me-2 text-white btn bg-secondary bg-opacity-50 backdrop-blur">READ MORE</Link>
                                     </div>
                                  </div>
-                              </CardBody>
+                              </div>
                            </Card>
                         </Col>
                      )
