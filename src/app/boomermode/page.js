@@ -141,32 +141,36 @@ export default function BoomerMode() {
                 <AccordionItem>
                   <AccordionHeader targetId="1">
                     <table className="w-100">
-                      <tr>
-                        <th>1-02-2025</th>
-                        <th>
-                          Bread Street! The New StreetVenture At JACC (Soon)
-                        </th>
-                        <th>Post</th>
-                      </tr>
+                      <thead>
+                        <tr>
+                          <th>1-02-2025</th>
+                          <th>
+                            Bread Street! The New StreetVenture At JACC (Soon)
+                          </th>
+                          <th>Post</th>
+                        </tr>
+                      </thead>
                     </table>
                   </AccordionHeader>
                   <AccordionBody accordionId="1">
                     <Table responsive className="w-100">
-                      <tr>
-                        <td >Summary</td>
-                        <td className="text-center">
-                          <div> You can modify any of this with custom CSS or
-                          overriding our default variables. Its also worth
-                          noting that just about any HTML can go within the though the
-                          You can modify any of this with custom CSS or
-                          overriding our default variables. Its also worth
-                          noting that just about any HTML can go within the though the
-                          You can modify any of this with custom CSS or
-                          overriding our default variables. Its also worth
-                          noting that just about any HTML can go within the though the</div>
-                        </td>
-                        <td>Post</td>
-                      </tr>
+                      <tbody>
+                        <tr>
+                          <td >Summary</td>
+                          <td className="text-justify">
+                            <div> You can modify any of this with custom CSS or
+                            overriding our default variables. Its also worth
+                            noting that just about any HTML can go within the though the
+                            You can modify any of this with custom CSS or
+                            overriding our default variables. Its also worth
+                            noting that just about any HTML can go within the though the
+                            You can modify any of this with custom CSS or
+                            overriding our default variables. Its also worth
+                            noting that just about any HTML can go within the though the</div>
+                          </td>
+                          <td>Post</td>
+                        </tr>
+                      </tbody>
                     </Table>
                   </AccordionBody>
                 </AccordionItem>

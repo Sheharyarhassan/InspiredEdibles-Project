@@ -19,7 +19,7 @@ function Page() {
                                  <div className="p-3">
                                     <div className="d-flex justify-content-between">
                                        <div className="d-flex">
-                                          {item.categories.map((category, index) => {
+                                          {item.tags.map((category, index) => {
                                              return (
                                                 <small key={index} className="py-0 px-1 me-2 text-white btn bg-secondary bg-opacity-50 backdrop-blur">{category}</small>
                                              )
@@ -57,7 +57,7 @@ function Page() {
                                  <div className="p-3">
                                     <div className="d-flex justify-content-between">
                                        <div className="d-flex">
-                                          {item.categories.map((category, index) => {
+                                          {item.tags.map((category, index) => {
                                              return (
                                                 <small key={index} className="py-0 px-1 me-2 text-white btn bg-secondary bg-opacity-50 backdrop-blur">{category}</small>
                                              )

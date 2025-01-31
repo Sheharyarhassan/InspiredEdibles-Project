@@ -9,6 +9,7 @@ import Terminals from "@/app/terminal/Terminals";
 import {TerminalContextProvider} from "react-terminal";
 import React, {useState,useEffect} from "react";
 import 'boxicons/css/boxicons.min.css';
+import GlobalKeyRedirect from "@/app/Common/GlobalKeyRedirect";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,9 +31,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Header toggleTerminal={() => setIsTerminalOpen((prev) => !prev)}/>
-        <div style={{ minHeight: "85vh" }}>
+        <div style={{ minHeight: "50vh" }}>
           {(isTerminalOpen && isClient) &&<TerminalContextProvider><Terminals/></TerminalContextProvider>}
-          {children}
+          <GlobalKeyRedirect toggleTerminal={() => setIsTerminalOpen((prev) => !prev)}>
+            {children}
+          </GlobalKeyRedirect>
         </div>
         {/* <Footer /> */}
       </body>

@@ -29,11 +29,11 @@ function Header({ toggleTerminal }) {
                      <Link href="/boomermode" className="nav-link btn bg-secondary-subtle me-3 py-1 text-uppercase">[B] Boomer mode</Link>
                   </li>
                </ul>
-               <a className="navbar-brand" href="#">
+               <Link className="navbar-brand" href="/">
                   <div className="col-xl-3 col-lg-6 text-center">
                      <Image src={Logo} alt="Stripe Logo" className="mw-100 h-auto"/>
                   </div>
-               </a>
+               </Link>
               <button className="btn bg-secondary-subtle py-1 text-uppercase" onClick={toggleTerminal}>[C] Console</button>
             </div>
          </div>

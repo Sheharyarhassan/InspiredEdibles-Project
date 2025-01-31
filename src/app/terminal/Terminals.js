@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { ReactTerminal } from "react-terminal";
 import Head from "next/head";
 
-const Terminals = () => {
+const Terminals = ({closeTerminal}) => {
    const [isMounted, setIsMounted] = useState(false);
 
    // Ensure terminal only renders on the client
@@ -28,6 +28,7 @@ const Terminals = () => {
          }
          return `Changed path to ${directory}`;
       },
+      close: ()=> closeTerminal(),
    };
 
    const unknownCommand = (command) =>
