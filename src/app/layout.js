@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Header toggleTerminal={() => setIsTerminalOpen((prev) => !prev)}/>
         <div style={{ minHeight: "50vh" }}>
-          {(isTerminalOpen && isClient) &&<TerminalContextProvider><Terminals/></TerminalContextProvider>}
+          {(isTerminalOpen && isClient) &&<TerminalContextProvider><Terminals closeTerminal={()=>setIsTerminalOpen(false)}/></TerminalContextProvider>}
           <GlobalKeyRedirect toggleTerminal={() => setIsTerminalOpen((prev) => !prev)}>
             {children}
           </GlobalKeyRedirect>

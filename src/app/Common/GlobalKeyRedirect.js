@@ -2,33 +2,44 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-const GlobalKeyRedirect = ({ children,toggleTerminal }) => {
+const GlobalKeyRedirect = ({ children, toggleTerminal }) => {
    const router = useRouter();
-
+   var terminalEditor;
    useEffect(() => {
+      terminalEditor = document.querySelector("#terminalEditor");
       const handleKeyPress = (event) => {
-         if (event.key === "m" || event.key === "M") {
-            router.push("/Blogmode");
+         const activeElement = document.activeElement;
+         if (
+            activeElement &&
+            (activeElement.tagName === "INPUT" ||
+               activeElement.tagName === "TEXTAREA" ||
+               activeElement.isContentEditable || terminalEditor)) {
+            return; // Do nothing if user is typing
          }
-         if (event.key === "y" || event.key === "Y") {
-            window.location.href = "https://www.instagram.com";
-         }
-         if (event.key === "b" || event.key === "B") {
-            router.push("/boomermode");
-         }
-         if (event.key === "c" || event.key === "C") {
-            toggleTerminal()
+
+         switch (event.key.toLowerCase()) {
+            case "m":
+               router.push("/Blogmode");
+               break;
+            case "y":
+               window.location.href = "https://www.instagram.com";
+               break;
+            case "b":
+               router.push("/boomermode");
+               break;
+            case "c":
+               toggleTerminal();
+               break;
+            default:
+               break;
          }
       };
-
-      // Attach event listener
-      document.addEventListener("keydown", handleKeyPress);
-
-      // Cleanup on unmount
+         document.addEventListener("keydown", handleKeyPress);
       return () => {
+         // Clean up event listeners
          document.removeEventListener("keydown", handleKeyPress);
       };
-   }, [router]);
+   }, [router, toggleTerminal,terminalEditor]);
 
    return <>{children}</>;
 };
