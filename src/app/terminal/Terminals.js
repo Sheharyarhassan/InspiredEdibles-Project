@@ -3,6 +3,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ReactTerminal } from "react-terminal";
 import Head from "next/head";
+import MusicPlayer from "@/app/Common/Components/MusicPlayer";
+import {useRouter} from "next/navigation";
 
 const Terminals = ({ closeTerminal }) => {
    const [isMounted, setIsMounted] = useState(false);
@@ -10,9 +12,12 @@ const Terminals = ({ closeTerminal }) => {
    const [position, setPosition] = useState({ x: 100, y: 100 });
    const [dragging, setDragging] = useState(false);
    const [offset, setOffset] = useState({ x: 0, y: 0 });
-   const [size, setSize] = useState({ width: 500, height: 300 });
+   const [size, setSize] = useState({ width: 700, height: 500 });
    const [resizing, setResizing] = useState(false);
-
+   const [commandHistory, setCommandHistory] = useState([]); // Store command history
+   const audioRef = useRef(null);
+   const [isPlaying, setIsPlaying] = useState(false);
+   const router = useRouter();
    // Ensure terminal only renders on the client
    useEffect(() => {
       setIsMounted(true);
@@ -62,18 +67,81 @@ const Terminals = ({ closeTerminal }) => {
       };
    }, [dragging, resizing, offset, position]);
 
+   const executeCommand = (command) => {
+      setCommandHistory((prevHistory) => {
+         const updatedHistory = [...prevHistory, command];
+         return updatedHistory;
+      });
+
+      const commandName = command.split(" ")[0]; // Extract the command
+      const args = command.split(" ").slice(1); // Extract arguments
+
+      if (commands[commandName]) {
+         return commands[commandName](...args);
+      } else {
+         return unknownCommand(command);
+      }
+   };
+
    // Terminal commands
    const commands = {
-      help: () =>
-         `Available commands:\n- whoami: Display user information\n- cd [directory]: Change to a specified directory\n- help: List available commands\n- close: Close the terminal`,
-      whoami: () => "jackharper",
-      cd: (directory) => {
-         if (!directory || directory.trim() === "") {
-            return "Error: No directory specified.";
-         }
-         return `Changed path to ${directory}`;
+      help: () => {
+         setCommandHistory((prevHistory) => {
+            const updatedHistory = [...prevHistory];
+            if (!updatedHistory.includes('help')) {
+               updatedHistory.push('help')
+            }
+            return updatedHistory;
+         });
+         return (
+            <>
+               <h4 className="my-3 fw-bold">Available commands:</h4>
+               <p><span className="fw-bold">history: </span> Show command history</p>
+               <p><span className="fw-bold">help: </span> List available commands</p>
+               <p><span className="fw-bold">close: </span> Close the terminal</p>
+               <p><span className="fw-bold">clear: </span> Clear the terminal</p>
+               <p><span className="fw-bold">music: </span> Plays/Pauses Music</p>
+               <p><span className="fw-bold">contact: </span> Shows Contact Details</p>
+            </>
+         )
       },
       close: closeTerminal,
+      history: () =>{
+         return(commandHistory.map((command,index)=>{
+            return(
+               <>
+                  <p className="mb-2" key={index}>{command}</p>
+               </>
+            )
+         }))
+      },
+      music: ()=>{
+         setCommandHistory((prevHistory) => {
+            const updatedHistory = [...prevHistory];
+            if (!updatedHistory.includes('music')) {
+               updatedHistory.push('music')
+            }
+            return updatedHistory;
+         });
+         if (!audioRef.current) return;
+         if (isPlaying) {
+            audioRef.current.pause();
+         } else {
+            audioRef.current.play();
+         }
+         setIsPlaying(!isPlaying);
+      },
+      contact:()=>{
+         setCommandHistory((prevHistory) => {
+            const updatedHistory = [...prevHistory];
+            if (!updatedHistory.includes('contact')) {
+               updatedHistory.push('contact')
+            }
+            return updatedHistory;
+         });
+         router.push('/contact');
+         closeTerminal;
+      }
    };
 
    const unknownCommand = (command) =>
@@ -104,9 +172,10 @@ const Terminals = ({ closeTerminal }) => {
                unknownCommand={unknownCommand}
                prompt="user@game:~$"
                style={{ height: "100%", flexGrow: 1, overflowY: "auto" }}
+               showControlButtons={false}
             />
          </div>
-         {/* Resize Handle */}
+         <MusicPlayer audioRef={audioRef} src="/assets/Xylophone.mp3"/>
          <div className="resize-handle" onMouseDown={handleResizeMouseDown}></div>
       </div>
    );

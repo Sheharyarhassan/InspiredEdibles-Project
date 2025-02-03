@@ -108,7 +108,7 @@ function Page() {
                                                 <i className="bx bx-plus-circle"></i>
                                              </sup>
                                           </DropdownToggle>
-                                          <DropdownMenu className="bottom-50 left-50 translate-middle">
+                                          <DropdownMenu className="bottom-50 left-50 translate-middle rounded-pill">
                                              <div className="d-flex">
                                              <DropdownItem className="text-center" style={{width:'70px', height:'70px'}}>
                                                 <Image src={Laugh} alt="Laugh" className="w-100 h-auto"/>
