@@ -107,6 +107,13 @@ const Terminals = ({ closeTerminal }) => {
       },
       close: closeTerminal,
       history: () =>{
+         setCommandHistory((prevHistory) => {
+            const updatedHistory = [...prevHistory];
+            if (!updatedHistory.includes('history')) {
+               updatedHistory.push('history')
+            }
+            return updatedHistory;
+         });
          return(commandHistory.map((command,index)=>{
             return(
                <>
@@ -140,7 +147,7 @@ const Terminals = ({ closeTerminal }) => {
             return updatedHistory;
          });
          router.push('/contact');
-         closeTerminal;
+         closeTerminal();
       }
    };
 

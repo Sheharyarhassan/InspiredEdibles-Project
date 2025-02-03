@@ -13,7 +13,7 @@ export default function ContactUs() {
             <button className="w-100 btn btn-outline-dark rounded-pill mt-5">Connect with us!</button>
             </Col>
             
-            <Image src={donut} className="col-4 mw-100 h-auto position-fixed bottom-0 start-50 translate-middle-x"/>
+            <Image src={donut} alt="Donut" className="col-4 mw-100 h-auto position-fixed bottom-0 start-50 translate-middle-x"/>
             
             <Col xl={4} lg={4} md={5}>
             <p className="fw-lighter mt-4">/ SOCIAL</p>
