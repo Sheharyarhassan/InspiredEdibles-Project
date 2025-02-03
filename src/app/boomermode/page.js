@@ -8,8 +8,9 @@ import {
   AccordionItem,
 } from "reactstrap";
 import { useState } from "react";
+import { accordionData } from "../Common/accordiansData";
 export default function BoomerMode() {
-  const [open, setOpen] = useState("");
+  const [open, setOpen] = useState("1");
   const toggle = (id) => {
     if (open === id) {
       setOpen();
@@ -131,79 +132,43 @@ export default function BoomerMode() {
           </Col>
           <Col lg={9}>
             <div className="d-flex px-3 border-bottom border-2 justify-content-between">
-              <p className="mb-2 fw-lighter col-2">/ DATE</p>
-              <p className="mb-2 fw-lighter col-8">/ NAME</p>
-              <p className="mb-2 fw-lighter col-2">/ TYPE</p>
+              <p className="mb-2 fw-lighter px-2 col-2">/ DATE</p>
+              <p className="mb-2 fw-lighter px-2 col-8">/ NAME</p>
+              <p className="mb-2 fw-lighter text-center col-2">/ TYPE</p>
             </div>
 
             <div>
               <Accordion flush open={open} toggle={toggle}>
-                <AccordionItem>
-                  <AccordionHeader targetId="1">
-                    <table className="w-100">
-                      <thead>
-                        <tr>
-                          <th>1-02-2025</th>
-                          <th>
-                            Bread Street! The New StreetVenture At JACC (Soon)
-                          </th>
-                          <th>Post</th>
-                        </tr>
-                      </thead>
-                    </table>
-                  </AccordionHeader>
-                  <AccordionBody accordionId="1">
-                    <Table responsive className="w-100">
-                      <tbody>
-                        <tr>
-                          <td >Summary</td>
-                          <td className="text-justify">
-                            <div> You can modify any of this with custom CSS or
-                            overriding our default variables. Its also worth
-                            noting that just about any HTML can go within the though the
-                            You can modify any of this with custom CSS or
-                            overriding our default variables. Its also worth
-                            noting that just about any HTML can go within the though the
-                            You can modify any of this with custom CSS or
-                            overriding our default variables. Its also worth
-                            noting that just about any HTML can go within the though the</div>
-                          </td>
-                          <td>Post</td>
-                        </tr>
-                      </tbody>
-                    </Table>
-                  </AccordionBody>
-                </AccordionItem>
-                <AccordionItem>
-                  <AccordionHeader targetId="2">
-                    Accordion Item 2
-                  </AccordionHeader>
-                  <AccordionBody accordionId="2">
-                    <strong>
-                      This is the second item&#39;s accordion body.
-                    </strong>
-                    You can modify any of this with custom CSS or overriding our
-                    default variables. It&#39;s also worth noting that just
-                    about any HTML can go within the{" "}
-                    <code>.accordion-body</code>, though the transition does
-                    limit overflow.
-                  </AccordionBody>
-                </AccordionItem>
-                <AccordionItem>
-                  <AccordionHeader targetId="3">
-                    Accordion Item 3
-                  </AccordionHeader>
-                  <AccordionBody accordionId="3">
-                    <strong>
-                      This is the third item&#39;s accordion body.
-                    </strong>
-                    You can modify any of this with custom CSS or overriding our
-                    default variables. It&#39;s also worth noting that just
-                    about any HTML can go within the{" "}
-                    <code>.accordion-body</code>, though the transition does
-                    limit overflow.
-                  </AccordionBody>
-                </AccordionItem>
+                {accordionData.map((item) => (
+                  <AccordionItem key={item.id}>
+                    <AccordionHeader targetId={item.id}>
+                      <table className="w-100">
+                        <thead>
+                          <tr>
+                            <th className="col-2 px-2 ps-0 fw-lighter"><i class='bx bxs-square'></i> {item.date}</th>
+                            <th className="col-8 px-2">{item.title}</th>
+                            <th className="col-2 text-center ps-5 px-2">
+                              {item.type}
+                            </th>
+                          </tr>
+                        </thead>
+                      </table>
+                    </AccordionHeader>
+                    <AccordionBody accordionId={item.id} className="mt-3">
+                      <Table responsive borderless className="w-100">
+                        <tbody>
+                          <tr>
+                            <td className="col-2">Summary</td>
+                            <td className="text-justify col-8">
+                              <div>{item.summary}</div>
+                            </td>
+                            <td className="col-2 text-center">{item.type}</td>
+                          </tr>
+                        </tbody>
+                      </Table>
+                    </AccordionBody>
+                  </AccordionItem>
+                ))}
               </Accordion>
             </div>
           </Col>
