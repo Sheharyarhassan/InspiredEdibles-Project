@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@netlify/plugin-nextjs": "^5.9.4",
     "@xterm/xterm": "^5.5.0",
     "bootstrap": "^5.3.3",
     "boxicons": "^2.1.4",

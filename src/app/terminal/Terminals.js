@@ -175,9 +175,9 @@ const Terminals = ({ closeTerminal }) => {
             </Head>
             <ReactTerminal
                commands={commands}
-               welcomeMessage={"Welcome to the Terminal!"}
+               welcomeMessage={"Welcome to the Inspired Edibles!"}
                unknownCommand={unknownCommand}
-               prompt="user@game:~$"
+               prompt="user:~$"
                style={{ height: "100%", flexGrow: 1, overflowY: "auto" }}
                showControlButtons={false}
             />
